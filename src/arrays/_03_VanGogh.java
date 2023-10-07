@@ -49,6 +49,9 @@ import processing.core.PImage;
 public class _03_VanGogh extends PApplet {
     PImage canvas;
     PImage paintbrushCursor;
+    PImage [] image;
+    String [] paintings = {"starrynight.jpg", "wheatField.jpg", "strawHatPortrait.jpg, painterOnRoad.jpg"};
+    int num;
     boolean initializeCanvas = true;
     
     /*
@@ -58,10 +61,30 @@ public class _03_VanGogh extends PApplet {
     
     void initializePaintings() {
         
+    	num = 0;
+    	
+    	for(int i=0; i<4; i++) {
+    		
+    		image[i]=new PImage();
+    		image[i]=loadImage(paintings[i]);
+    	}
+    	
+    	brush.setNewPainting(image[num]);
+    	
     }
     
     void selectNextPainting() {
-        
+    	
+    	if(num == 3) {
+    		
+    		num = 0;
+    	}
+    	else {
+    
+    		num += 1;
+    	}
+    	
+    	brush.setNewPainting(image[num]);
     }
 
     @Override
